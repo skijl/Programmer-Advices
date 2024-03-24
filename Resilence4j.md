@@ -19,12 +19,20 @@ resilience4j:
         sliding-window-type: count_based
 # Retry
 - Retry some amount of times if the response is negative 
+# Rate Limiting
+- Technique for limiting network traffic
+- Prevent abuse
+- Resourse allocation
+- Cost management
 ## Properties
 resilience4j:
-  retry:
+  ratelimiter:
     configs:
       companyBreaker:
-        max-attempts: 5
+        timeout-duration: 0
+        limit-refresh-period:
+        seconds: 5
+        limit-for-period: 1
 ## pom.xml
         <dependency>
 			<groupId>org.springframework.cloud</groupId>
