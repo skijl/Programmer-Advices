@@ -1,2 +1,2 @@
 ## Test requests
-![alt text](image.png)
+![alt text](./static/image.png)
