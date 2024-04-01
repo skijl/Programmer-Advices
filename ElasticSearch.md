@@ -1,6 +1,7 @@
 # Elastic Search
 - Elasticsearch is a distributed, RESTful search and analytics engine capable of addressing a growing number of use cases. 
 - As the heart of the Elastic Stack, it centrally stores your data for lightning fast search, fine‑tuned relevancy, and powerful analytics that scale with ease.
+- Speed and scalability
 - More info: https://geshan.com.np/blog/2023/06/elasticsearch-docker/
 ## Docker-Compose
 elasticsearch:
@@ -27,3 +28,26 @@ elasticsearch:
 spring:
   elasticsearch:
     uris: http://localhost:9200
+# SpringBoot implementation
+## Dto
+@Document(indexName = "product")
+public class ProductDto {
+    @Id
+    private String id;
+    private Long productId;
+    private String name;
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private LocalDateTime date;
+}
+## Service
+public ProductDto getById(Long productId) {
+        Criteria criteria = new Criteria("productId").is(productId);
+        Query query1 = new CriteriaQuery(criteria);
+        NativeQuery query = new NativeQueryBuilder()
+                .withSourceFilter(new FetchSourceFilterBuilder().withIncludes().build())
+                .withQuery(query1)
+                .build();
+        SearchHits<ProductDto> searchHits = elasticsearchTemplate.search(query, ProductDto.class);
+        return searchHits.stream().map(SearchHit::getContent).findFirst()
+                .orElseThrow(() -> new ElasticsearchNotFoundException("Product with id: " + productId + " not found in Elasticsearch"));
+    }
