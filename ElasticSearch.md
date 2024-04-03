@@ -34,14 +34,16 @@ spring:
 public class ProductDto {
     @Id
     private String id;
+    @Field(name = "product_id")
     private Long productId;
+    @Field(name = "name")
     private String name;
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-    private LocalDateTime date;
+    @Field(name = "start_date")
 }
 ## Service
 public ProductDto getById(Long productId) {
-        Criteria criteria = new Criteria("productId").is(productId);
+        Criteria criteria = new Criteria("product_id").is(productId);
         Query query1 = new CriteriaQuery(criteria);
         NativeQuery query = new NativeQueryBuilder()
                 .withSourceFilter(new FetchSourceFilterBuilder().withIncludes().build())
