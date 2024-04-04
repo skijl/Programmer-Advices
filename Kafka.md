@@ -24,22 +24,30 @@ spring:
         spring.json.type.mapping: event:com.maksym.orderservice.event.NotificationEvent # tag:class to send
 ## Consumer (retreives)
 1. Create listener with argument as evenObject to retreive
-@KafkaListener(topics = "notificationTopic")
+@KafkaListener(topics = "yourTopic", groupId = "yourGroupId")
     public void handleNotification(NotificationEvent notificationEvent){
         
     }
 ## Properties
 spring:
   kafka:
-    bootstrap-servers: localhost:9092 # kafka host
-    template:
-      default-topic: notificationTopic #topic name
-    consumer:
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-      group-id: notificationId # group id for the consumer
+  bootstrap-servers: ${KAFKA_URI:localhost:9092}
+  producer:
+    key-serializer: org.apache.kafka.common.serialization.StringSerializer
+    value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+  consumer:
+    key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
     properties:
-      spring.json.type.mapping: event:com.maksym.notificationservice.event.NotificationEvent #  tag:class to retreive
+      spring:
+        deserializer:
+          value:
+            delegate:
+              class: org.springframework.kafka.support.serializer.JsonDeserializer
+  properties:
+    spring.json.type.mapping: notification:com.maksym.orderservice.kafka.producer.NotificationProducer, order-status:com.maksym.orderservice.kafka.consumer.OrderStatusConsumer
+    group-id: order-service #  tag:class to retreive
 #Docker compose
 services:
   zookeeper:

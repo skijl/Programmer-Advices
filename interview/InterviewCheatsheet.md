@@ -38,6 +38,7 @@
 1) Source code compiled to bytecode
 2) Run on JVM
 ### Terms
+- **IDE** - a software application that helps develop software code efficiently
 - **JDK** - Java Development Kit - write Java
 - **JRE** - Java Runtime Environment - run Java. JRE consists of runtime libraries + JVM
 - JDK consists of tools and JRE
@@ -77,7 +78,7 @@ Purpose of immutable objects:
 > Wrapper Class: represents a primitive data type as an object (int <=> Integer) 
 **When do we need it?:**
 - Clone() method
-- Serialization - transfer to other place (DB, Socket)
+- Serialization - a process of converting object into a binary stream to transfer to other place (DB, Socket). Implements Serializiable. Static method doesn't serialize. Transient = ingnored. 
 - Collections
 * Autoboxing: make an object from primitive value
 * Unboxing: make a primitive from an object
@@ -150,4 +151,97 @@ Types of exceptions:
 - We use it for hashing purposes in HashSet, HashTable, HashMap. 
 - Works closely with equals method.
 - To override HashCode we used to override equals(), equals(), hashcode().
+## Threads
+> Thread is the direction or path that is taken while a program is being executed (an activity to do something)
+> Process: any program that has its own memory space. Thread is a part of a process, does share memo.
+> Multithreading: can be **Multithreading based** or **Multiprocess based**
+- Multithreading: many threads run in a process
+- Multiprocess: many apps/prcesses run in one thread
+JVM scheduler(threadscheduler): native-platform dependent!
+### How to create threads:
+1) By inherit Thread class
+2) By implementing Runnable
+3) Thread pool - modern way
+Concurracy: more than one thread is making progress, but the threads are not actually running simultaneously
+Multithreading: all threads run on one process
+### Thread lifecycle
+1) New:
+    -when we instantiate a thread
+2) Runnable: 
+    - thread moves to Runnable pool ( start(); => scheduled for execution, ready to go )
+3) Running State: 
+    - when actual processor allocated to thread for execution
+4) sleep():
+    - Timed-Waiting
+5) Wating State: 
+    - Join() - thread joined another thread.
+    - Wait() - waiting for the lock of an object whicj runs by another thread
+6) Blocked State: 
+    - When interrupt came and thread is blocked
+    - OR
+    - We are waiting to execute an another thread
+7) Dead state:
+    - Once it completes run()
+### Threads Pools
+* Prefered Pool of available working threads can be assigned to a task when comes from event. Working thread are reusable.
+* Types of Thread Pools:
+1) Fixed Thread Pool
+2) Cached-Dynamic
+3) Single Thread
+4) Scheduled Thread Pool
+- Synchronization is a mechanism that allows many threads to run concurrently to access the data one at a time by locking
+- Concurrency indicates that more than one thread is making progress, but the threads are not actually running simultaneously.
+**2 ways in Java**
+1) Implicit lock - by making method to be synchronized
+    - KeyWord *synchronize* locks an object to use by thread
+    - wait(): tells the thread to wait for a lock to be released
+    - notify(): waiting thread gets signed that lock is free
+    - wait() and notify(): interthread communication
+2) Explicit - by creating a lock object from noncurrent API
+    - Lock fairness: one who is waiting more gets a lock
+* DeadLock - 2 or more threads competing for a lock to release. one waits another, but that one waits for the first one
+* Daemon Thread - is low-priority threads that run in the background to perform tasks such as garbage collection or provide services to user threads.
+## Collections
+> Collection is a way of grouping of objects in a single unit
+Core interfaces:
+- **Collection**
+- **List** (duplicates, null objects. Start capacity 10, if full almost doubles)
+    - ArrayList, LinkedList, Vector
+- **Stack** (works by hash indecies)
+- **Queue** (FIFO, insert and delete only from beginning and end)
+    - LinkedList
+- **Dequeue** (Same as Queue, but instertion and deletion from both sides)
+    - LinkedList
+- **Set** (unordered List without duplicates. Uses Map internally. LinkedHashset is ordered, Concurrenthash)
+    - HashSet, LinkedHashSet. ConcurrentHashSet is threadsafe or synchronized
+- **Map** (part of Collection but not inherit. Has an unorderedKey-Value pair, where Key is unique. HashMap - not synchronized, HashTable - synchronized)
+    - HashMap, ConcurrentHashmap, LinkedHashMap
+Legacy Collections (Synchronized or Threadsafe):
+1) Vector
+2) Stack
+3) Dictionary
+4) Hashtable
+5) Ennumeration
+### Features
+> Iterator - is an interface that allow the collection to be iterated from beginning till the end
+- Iterator has functoins:
+    - hasNext() - true/false
+    - next() - returns the next element from the next index
+How to get it?
+- Iterable is an interface returns an Iterator that we can do modifications through Iterator to Collections/
+- ListIterator has a function previous() we can traverse from the end to the beginning but only for List
+* Comparator is an interface. Every object in a treeSet must be comparable to Sort them. Class must implement Comparable Interface.
+* CompareTo() is an abstract method generic type
+* Map similar to Set. To iterate we have to convert it to Set. 3 ways:
+1) KeySet - `for (String key : map.keySet())`
+2) ValueSet - `for (Integer value : map.values())`
+3) EntrySet - `for (Map.Entry<String, Integer> entry : map.entrySet())`
+# Spring Framework
+## JDBC - Java Database Connectivity
+> JDBC is an interface that defines how the client have may connect to database and helps avoid common errors
+- Connectivity with database
+- Loads the driver
+- Execute the query
+**JDBC task** - to write and execute SQL queries from Java app
+Java application talks to Database through the JDBC (We use JDBC Driver as a middleware that converts JDBC calls to SQL calls)
 
