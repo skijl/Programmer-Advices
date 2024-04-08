@@ -75,8 +75,8 @@ Purpose of immutable objects:
 - Used in multithreading when you can view but cannot edit data (Read-only feature for user)
 * static import: set of statements that is running when class is loaded. In this block we can write static members initialization code.
 > Object Class: supercalss for all hierarchy. Default superclass.   
-> Wrapper Class: represents a primitive data type as an object (int <=> Integer) 
-**When do we need it?:**
+> Wrapper Class: represents a primitive data type as an object (int <=> Integer)
+> **When do we need it?:**
 - Clone() method
 - Serialization - a process of converting object into a binary stream to transfer to other place (DB, Socket). Implements Serializiable. Static method doesn't serialize. Transient = ingnored. 
 - Collections
@@ -124,7 +124,7 @@ Types of inheritance:
     - Agregation - when 2 entities can survive individualy, ending one entity will not affect the other entity(Teacher=>College<=Student)
     - Composition - entities highly dependent on each other(Car=>Engine=>Oil)
 ## Annotation
-- Annotation - tells to compiler somer instructions during the runtime.
+- Annotation - tells to compiler some instructions during the runtime.
 - Runtime building is dynamic
 - @Override while runtime decides what function to choose
 ## Exceptions
@@ -132,7 +132,7 @@ Types of inheritance:
 1) try/catch
 2) try/catch/finally or try/finally
 3) throw/throws
-> Exceptions break flow of the program if not handled. The indicator that something went wrong during runtime
+> Exceptions break flow of the program if not handled. The indicator that something went wrong during runtime.
 1) Error: beyond the control of the program (sytax error)
 2) Logical error: unexpected output
 3) Exception: fixable by exception handling
@@ -142,8 +142,8 @@ Types of exceptions:
 - Unchecked: Runtime exception
 ## String
 > String is an **immutable** array of chars
-- Stored in a *contant pool* since it is immutable it is constant
-- For contantly changing strings use:
+- Stored in a *constant pool* since it is immutable it is constant
+- For constantly changing strings use:
     - StringBuffer: threadsafe, low perform
     - StringBuilder not threadsafe, high perform
 ## HashCode
