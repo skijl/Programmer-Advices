@@ -28,7 +28,7 @@ spring:
     public void handleNotification(NotificationEvent notificationEvent){
         
     }
-## Properties
+## Properties (Local)
 spring:
   kafka:
   bootstrap-servers: ${KAFKA_URI:localhost:9092}
@@ -74,3 +74,22 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+## Properties (Confuent)
+spring:
+  kafka:
+    bootstrap-servers: ${KAFKA_URI:your_kafka_bootstrap_servers}
+    properties:
+      security.protocol: SASL_SSL
+      sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username='${CLUSTER_API_KEY}' password='${CLUSTER_API_SECRET}';
+      sasl.mechanism: PLAIN
+      session:
+        timeout.ms: 45000
+      spring.json.type.mapping: notification:com.onlineshop.orderservice.kafka.producer.NotificationProducer, order-status:com.onlineshop.orderservice.kafka.consumer.OrderStatusConsumer
+      group-id: order-service
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      group-id: notification-service

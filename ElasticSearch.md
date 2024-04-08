@@ -27,7 +27,9 @@ elasticsearch:
 ## application.yml
 spring:
   elasticsearch:
-    uris: http://localhost:9200
+    uris: ${ELASTICSEARCH_URI:http://localhost:9200}
+    username: ${ELASTICSEARCH_USERNAME:your_elasticsearch_username}
+    password: ${ELASTICSEARCH_PASSWORD:your_elasticsearch_password}
 # SpringBoot implementation
 ## Dto
 @Document(indexName = "product")

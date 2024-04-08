@@ -1,32 +1,32 @@
 # Java 8 Features
-### Default methods in an interface
-### Static methods in an interface
-### Function Interface
-* Instead of object you pass a function
-* Predicate is a functional interface with one abstract method 'test', that accepts 1 param, return true/false
-* Types on functional interface
-    - Built-in
-    - User defined
-### Stream
-* Stream - is a sequence of Bytes (8 bit binary data)
-* Functions in streams (filter, map, distinct, sort, toList)
-* Byte Streams
-    - FileInputStream - reads from bin file.
-        - BufferedInputStream - remembers position and can move back
-        - ObjectInputStream - used to deserialize Java objects from an InputStream
-    - FileOutputStream - writes to bin file
-        - FileOutputStream
-        - BufferedOutputStream
-        - ByteArrayOutputStream
-        - ObjectOutputStream /Serialization/
-    - Char streams
-        - FileReader
-        - FileWriter
-### Lambda function(expression) 
-* Lambda function is function that can execute some logic, you can pass it as a parameter
-### Method refference
-### Optional
-# Features of Java
+- Default methods in an interface
+- Static methods in an interface
+- Function Interface
+    * Instead of object you pass a function
+    * Predicate is a functional interface with one abstract method 'test', that accepts 1 param, return true/false
+    * Types on functional interface
+        - Built-in
+        - User defined
+    * Stream
+    * Stream - is a sequence of Bytes (8 bit binary data)
+    * Functions in streams (filter, map, distinct, sort, toList)
+    * Byte Streams
+        - FileInputStream - reads from bin file.
+            - BufferedInputStream - remembers position and can move back
+            - ObjectInputStream - used to deserialize Java objects from an InputStream
+        - FileOutputStream - writes to bin file
+            - FileOutputStream
+            - BufferedOutputStream
+            - ByteArrayOutputStream
+            - ObjectOutputStream /Serialization/
+        - Char streams
+            - FileReader
+            - FileWriter
+- Lambda function(expression) 
+- Lambda function is function that can execute some logic, you can pass it as a parameter
+- Method refference
+- Optional
+## Features of Java
 * Platform independent (we compile anywhere to bytecode and run anywhere on JVM)
 * Strongly typed
 * Multithreading ( > 1 task at a time)
@@ -236,12 +236,3 @@ How to get it?
 1) KeySet - `for (String key : map.keySet())`
 2) ValueSet - `for (Integer value : map.values())`
 3) EntrySet - `for (Map.Entry<String, Integer> entry : map.entrySet())`
-# Spring Framework
-## JDBC - Java Database Connectivity
-> JDBC is an interface that defines how the client have may connect to database and helps avoid common errors
-- Connectivity with database
-- Loads the driver
-- Execute the query
-**JDBC task** - to write and execute SQL queries from Java app
-Java application talks to Database through the JDBC (We use JDBC Driver as a middleware that converts JDBC calls to SQL calls)
-
