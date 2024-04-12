@@ -12,7 +12,7 @@
 - In AWS you can set policy for passwords
 - You can also set up MFA and singin using other device too
 ### Access AWS
-> AWS CLI - is a tool that enables  to interact with AWS services using commands in your command-line shell
+> AWS CLI - is a tool that enables interaction with AWS services using commands in your command-line shell
 > AWS SDK - enables you to access and manage AWS services programatically. Embedded in your application
 - Access with AWS CLI
     - cmd: `aws --version`
@@ -33,7 +33,8 @@
 ### Create Billing treshhold
 - Budgets => Create Budget to create alert for some treshhold
 ## EC2
-> EC2 = Elastic Compute Cloud = Infrastructure as a Service =  Renting vitrual machine
+> EC2 = Elastic Compute Cloud = Infrastructure as a Service = Renting vitrual machine
+> To attach Role to EC2 use EC2 => Actions => Modify IAM Role
 After each start instance gets different IPv4 address
 - CPU
 - RAM
@@ -41,7 +42,7 @@ After each start instance gets different IPv4 address
     - Network-attached (EBS & EFS)
     - Hardware (EC2 Instance Store)
 - Key Pair: connect to EC2
-- Network card
+- Network card: ENI
 - Firewall (Security Group): 
     - Controls traffic TO or OUT of the EC2 instance.
     - Security groups only contain *allow* rules
@@ -50,12 +51,12 @@ After each start instance gets different IPv4 address
 - Bootstap script (config at launch): EC2 User Data (install updates, software, files from internet)
 > ssh -i <file_name.pem> ec2-user@<public_ipv4>
 ### Ports
-**22** = SSH (Secure Shell) - log into a Linux instance
-**21** = FTP (File Transfert Protocol) - upload files into a file share
-**22** = SFTP (Secure File Transfert Protocol) - upload files using SSH
-**80** = HTTP - access unsecured websites
-**443** = HTTPS - acces secured websites
-**3389** = RDP (Remote Desktop Protocol) - log into a Windows instance
+- **22** = SSH (Secure Shell) - log into a Linux instance
+- **21** = FTP (File Transfert Protocol) - upload files into a file share
+- **22** = SFTP (Secure File Transfert Protocol) - upload files using SSH
+- **80** = HTTP - access unsecured websites
+- **443** = HTTPS - acces secured websites
+- **3389** = RDP (Remote Desktop Protocol) - log into a Windows instance
 ### EC2 Instance Types
 > https://instances.vantage.sh/
 - **General Purpose** (T, M)
@@ -67,3 +68,84 @@ After each start instance gets different IPv4 address
     - Fast performance for workloads that process large data sets in memory
 - **Storage Optimized**
     - Great for storage-intensive tasks that require high, sequential read and write access to large data sets on local storage
+### EC2 Instances Purchasing Options
+- **On-Demand Instances** - short workload, predictable pricing, pay by second (expensive)
+- **Reserved** (1 & 3 years)
+    - Reserved Instances - long workloads
+    - Convertible Reserved instances - long workloads with flexible instances
+- **Saving Plans** (1 & 3 years) - commitment to an amount of usage, long workload
+- **Spot Instances** - short workloads, can lose instances (less reliable, the cheapest). 
+    - Cancel Spot Request before Terminating
+    - **Spot Fleets** = set of Spot Instances + (optional) On-Demand. They allow us to automatically request Spot Instances with the lowest price
+    - Strategies to allocate Spot Instances:
+        - **lowestPrice** (cost optimization, short workload)
+        - **diversified:** distributed across pools (availability, long workloads)
+        - **capacityOptimized:** pool with the optimal capacity for the number of instances
+        - **priceCapacityOptimized (recommended):** pools with highest capacity available, then select the pool with the lowest price (best choise for most workloads)
+- **Dedicated Hosts** - book an entire physical server; control instance placement (the most expensive)
+- **Dedicated Instances** - no other customers will share your hardware
+- **Capacity Reservation** - reserve capacity in a specific AZ for any duration in your region (Charged even if Instance is stopped)
+### Elastic IP
+> Elastic IP attaches an IP for certain Instance *(only 5 in AWS account, uncommon to use)*
+Create: Elastic IPs => Associate Elastic IP sddress
+Delete: Elastic IPs => Disassociate Elastic IP sddress => Release Elastic IP addresses
+### Placement Groups
+> Control over EC2 placement strategy
+When you create a placement group, you specify one of the following strategies for the group:
+* **Cluster** - clusters instances into a low-latency group in a single Availability Zone 
+    + Low latency
+    - If the AZ fails, all the instances fail at the same time
+* **Spread** - spreads instances across underlying hardware (max 7 instances per group per AZ) - critical application
+    + Reduced risk of simultaneous failure(All instances located on different hardware)
+    + Span across multiple AZ
+    - Limited to 7 instances per AZ per placement group
+* **Partition** - spreads instances across many different partitions (which rely on different sets of racks) within an AZ. Scales to 100s of EC2 instances per group (Hadoop, Cassandra, Kafka)
+    + Span across multiple AZ 
+    + Up to 100s of EC2 instances
+    + A partition failure can affect many EC2 but won't affect other partitions (Instances in partition do not share racks with the instances in the other partitions)
+### Elastic Network Interfaces (ENI)
+> ENI represents a **virtual network card**
+- You can move ENI to another instance and attach private IP to it
+- Bound to a specific AZ
+### EBS Volume
+> An **EBS (Elastic Block Store) Volume** is a **network** drive you can attach to your instances while they run
+- It allows instances to persist data, even after their termination
+- Can be mounted to one instance at a time (at the CCP level)
+- Bounded to a specific AZ
+- Using *EBS Snapshot* you can copy EBS across AZ or Region
+    - EBS Snapshot Archive: 24-72 hours to restore, cheap
+    - Recycle Bin for EBS Snapshots: rules to retain deleted shapshots so you can recover them after accidental deletion
+    - Fast Snapshot Restore (FSR): no latency, expensive
+### AMI
+> AMI = Amazon Machine Image - a *customization* of an EC2 Instance
+- For specific region
+### EC2 Instance store
+> If you need high performance hardware disk, use EC2 Instance Store 
++ Good for buffer / cache / scratch data / temporary content
+- You lose the storage if the Instance is stopped
+- Backups and Replication are your responsibility
+* EBS Volumes come in 6 types:
+    * gp2 / gp3 (SSD): balance between price and performance
+    * io / io2 Block Express (SSD): highest-performance SSD volume, *multi-attach feature - up to 16 instances at a time*
+    * st I (HDD): Low cost, frequently accessed
+    * sc I (HDD): Lowest cost HDD volume designed for less frequently accessed workloads
+> EBS Volumes are charecterized in Size | Throughput | IOPS (I/O - operations per second)
+- If you have doubts, always use AWS documentation
+### Elastic File System (EFS)
+- Can be mount on many EC2 in multi-AZ
+- Highly available, sclable, expernisive (3x gp2)
+- Uses NFSv4.1 protocol
+- **Compatible only with Linux based AMIs**
+- Scales automatically, pay-per-use, no capacity planning
+## Scalability & High Availability
+- Scalability means that an application  / system can handle greater loads by adapting
+    - Verical Scalability (increasing the size of the instance)
+    - Horizontal Scalability (=elasticity, increasing number of instances)
+- High availability means running the app / system in at least 2 data centers (== Availability Zones)
+### Elastic Load Balancer
+> Load Balancers are servers that forwarrd traffic to muliple servers (eg EC2 Instances) downstreams
+- Spread  load across muliple downstream instances
+- Expose a single point of access (DNS) to your application
+- Seamlessly handle failures of downstream instances (healthchecks)
+* **Application Load Balancer**
+* ****

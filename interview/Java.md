@@ -1,13 +1,13 @@
 # Java 8 Features
-- Default methods in an interface
-- Static methods in an interface
-- Function Interface
-    * Instead of object you pass a function
+- **Default methods in an interface**
+- **Static methods in an interface**
+- **Function Interface**
+    * Instead of object you pass a function (single abstract method)
     * Predicate is a functional interface with one abstract method 'test', that accepts 1 param, return true/false
     * Types on functional interface
         - Built-in
         - User defined
-    * Stream
+- **Stream**
     * Stream - is a sequence of Bytes (8 bit binary data)
     * Functions in streams (filter, map, distinct, sort, toList)
     * Byte Streams
@@ -22,16 +22,15 @@
         - Char streams
             - FileReader
             - FileWriter
-- Lambda function(expression) 
-- Lambda function is function that can execute some logic, you can pass it as a parameter
-- Method refference
-- Optional
+- **Lambda function(expression)** - anonimous function that can execute some logic, you can pass it as a parameter
+- **Method refference**
+- **Optional**
 ## Features of Java
 * Platform independent (we compile anywhere to bytecode and run anywhere on JVM)
 * Strongly typed
 * Multithreading ( > 1 task at a time)
 * OO (Class/Object, encapsulation, polymorphysm, Inheritance, Abstraction)
-* Compiled then interpeted
+* Compiled then interpreted
 * Memory management (Garbage Collector)
 * Robust exception handling
 ### 2 Step Execution
@@ -80,7 +79,7 @@ Purpose of immutable objects:
 - Clone() method
 - Serialization - a process of converting object into a binary stream to transfer to other place (DB, Socket). Implements Serializiable. Static method doesn't serialize. Transient = ingnored. 
 - Collections
-* Autoboxing: make an object from primitive value
+* Outboxing: make an object from primitive value
 * Unboxing: make a primitive from an object
 ### Encapsulation
 - A way to hide data or methods from outsiders
@@ -97,7 +96,7 @@ Purpose of immutable objects:
 ### Inheritance
 A feature that allows you:
 - to reuse the code
-- reduce effort to writingthe code
+- reduce effort of writing the code
 - reduce maintenance
 Types of inheritance:
 1) Single: Person <= Manager
@@ -106,18 +105,18 @@ Types of inheritance:
 4) Multiple Inheritance (interface)
 - Child constructor executes parent constructor **(super() before everyhting)**
 ### Abstraction
-- Abstraction is a way to hide an implementation
-    - Abstract class (you can't create objects from abstract classes. It can have implemented or abstract methods, doesn't support multiple inheritance)
-    - Interface (We use it through child classes. Abstract methods have no bodies. Supports multiple inheritance)
-    - A skeleton, a blueprint without implementation
-    - Can be used to describe featured of a system entity
-    - May be used to represent abstraction
-    - May have methods with bodies if it is a default static method
-    - All vars are public, static, final (no private, no protected)
-    - No constructor
+> Abstraction is a way to hide an implementation
+- Abstract class (you can't create objects from abstract classes. It can have implemented or abstract methods, doesn't support multiple inheritance)
+- Interface (We use it through child classes. Abstract methods have no bodies. Supports multiple inheritance)
+- A skeleton, a blueprint without implementation
+- Can be used to describe featured of a system entity
+- May be used to represent abstraction
+- May have methods with bodies if it is a default static method
+- All vars are public, static, final (no private, no protected)
+- No constructor
 ## Assosiation
 - **Assosiation** - relationship between 2 not related entities(classes). For assosiation use interface:
-    Class A wants to use date from class B:
+    Class A wants to use data from class B:
     1) Inheritance
     2) Relationship
     Assotiation has two types:
@@ -150,7 +149,7 @@ Types of exceptions:
 > HashCode is an address
 - We use it for hashing purposes in HashSet, HashTable, HashMap. 
 - Works closely with equals method.
-- To override HashCode we used to override equals(), equals(), hashcode().
+- To override HashCode we used to override equals(), hashcode().
 ## Threads
 > Thread is the direction or path that is taken while a program is being executed (an activity to do something)
 > Process: any program that has its own memory space. Thread is a part of a process, does share memo.
@@ -166,7 +165,7 @@ Concurracy: more than one thread is making progress, but the threads are not act
 Multithreading: all threads run on one process
 ### Thread lifecycle
 1) New:
-    -when we instantiate a thread
+    - when we instantiate a thread
 2) Runnable: 
     - thread moves to Runnable pool ( start(); => scheduled for execution, ready to go )
 3) Running State: 
@@ -175,7 +174,7 @@ Multithreading: all threads run on one process
     - Timed-Waiting
 5) Wating State: 
     - Join() - thread joined another thread.
-    - Wait() - waiting for the lock of an object whicj runs by another thread
+    - Wait() - waiting for the lock of an object which runs by another thread
 6) Blocked State: 
     - When interrupt came and thread is blocked
     - OR

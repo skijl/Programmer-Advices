@@ -24,6 +24,7 @@ elasticsearch:
 - create index: PUT /<index_name>
 - insert value in index: POST /<index_name>/_doc + {json_body}
 - get all values in index: POST /<index_name>/_search
+- delete by id: DELETE /<index_name>/_doc/<id>
 ## application.yml
 spring:
   elasticsearch:
