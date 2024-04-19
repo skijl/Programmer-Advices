@@ -59,10 +59,15 @@
 finalize() - method called after garbage collection
 System.gc() - static mehtod of system class to forcefully run the garbage collector
 # OOP Features
-### Classes and  Objects
+### Classes and Objects
 - Class is a blueprint to create an object
     - Object - is an intance of a class 
     - Constructor - method that initializes the state and value during object creation.
+> Why do we need private constructor?
+- **Prevent instantiation:** prevent other classes to create new instance of a class
+- **Singleton pattern:** class enshures that only one instance is created
+- **Factory methods:** control how objects are created, validation
+- **** 
 ### Types of Classes
 - Class A {} - concrete class (can be inherited, Object)
 - abstract Class B {} - incomplete class (can be inherited, no Object)
@@ -82,7 +87,7 @@ Purpose of immutable objects:
 * Outboxing: make an object from primitive value
 * Unboxing: make a primitive from an object
 ### Encapsulation
-- A way to hide data or methods from outsiders
+> **A way to hide data or methods from outsiders**
 - Binding data and function together through the access modifiers: public, private, dafault, protected
     - public: accessible everywhere
     - protected: accessible inside the package + children outside the package

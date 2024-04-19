@@ -49,7 +49,8 @@ After each start instance gets different IPv4 address
     - Locked down to a particular region
     - *It's good to maintain one separate security group for SSH access*
 - Bootstap script (config at launch): EC2 User Data (install updates, software, files from internet)
-> ssh -i <file_name.pem> ec2-user@<public_ipv4>
+> Connect with ssh: ssh -i <file_name.pem> ec2-user@<public_ipv4>
+> Copy file to ec2: scp -i <file_name.pem> <path_to_file> ec2-user@<public_ipv4>:<path_on_ec2>
 ### Ports
 - **22** = SSH (Secure Shell) - log into a Linux instance
 - **21** = FTP (File Transfert Protocol) - upload files into a file share
@@ -138,7 +139,7 @@ When you create a placement group, you specify one of the following strategies f
 - **Compatible only with Linux based AMIs**
 - Scales automatically, pay-per-use, no capacity planning
 ## Scalability & High Availability
-- Scalability means that an application  / system can handle greater loads by adapting
+- Scalability means that an application / system can handle greater loads by adapting
     - Verical Scalability (increasing the size of the instance)
     - Horizontal Scalability (=elasticity, increasing number of instances)
 - High availability means running the app / system in at least 2 data centers (== Availability Zones)
@@ -148,4 +149,54 @@ When you create a placement group, you specify one of the following strategies f
 - Expose a single point of access (DNS) to your application
 - Seamlessly handle failures of downstream instances (healthchecks)
 * **Application Load Balancer**
-* ****
+* **Netword Load Balancer**
+* **Gateway Load Balancer** *(GENEVE protocol 6081)*
+- **Sticky session (Session Affinity):**
+    - The same client always redirected to the same instance
+    - Used 'cookie' for stickness, has an expiration date you control
+    - Application-based Cookies & Duration-based Cookies
+> **Cross Zone Load Balancing:** distribute evenly between the instances in the availabilaty zones in all the LBs
+- Available in ALB by default, no charges (can be changed in target group)
+- Not available in NLB by default, charges for inter AZ if enabled
+> **Without Cross Zone Load Balancing:** distribute evenly between the LBs and then instances in the availabilaty zones
+### Deregistration Delay (Connection draining)
+- Time to Complete 'in-flight requests' while the instance is de-registering or unhealthy
+- Stops sending new requests to the EC2 isntance which is de-registering
+### SSL/TLS Basics
+- SSL (Secure Sockets Layer) used to encrypt connections
+- TLS (Transport Layer Security), which is a newer version
+- Nowadays, TLS certificate are mainly used, but people still refer as SSL
+- SNI (Server Name Indication) solves the problem of loading multiple SSL setificates onto one web server (to serve multiple websites)
+### Auto Scaling Group (ASG)
+The goal of ASG:
+- Scale out (add EC3 instances) to match an increased load
+- Scale in (remove EC2 instances) to match a decresed load
+- Enshure we have a minimum and a maximum number of EC2 instances running
+- Automatically register new instances to load balancer
+- Re-create an EC2 instance in case a previous one is terminated (ex: if unhealthy)
+- CloudWatch Alarms used for autoscaling using metrics
+> ASG are free (you only pay for the underlying EC2 instances)
+- **A Launch Template:**
+    - AMI + Instance Type
+    - EC2 User Data
+    - EBS Volumes
+    - Security Groups
+    - SSH Key Pair
+    - IAM Roles for your EC2 Instances
+    - Network + Subnets Information
+    - Load Balancer Information
+- Min Size / Max Size / Initial Capacity
+- Scaling Policies
+* **Autoscaling Groups:**
+    * Dynamic Scaling (Scale when the CloudWatch is triggered)
+    * Scheduled Scaling (Anticapate scaling using known patterns)
+    * Predictive Scaling (Schedule using forecast)
+## RDS
+> RDS - Relational Database Service
+- Automated provisioning / Auto Scaling / Maximum Storage Treshhold
+- Backups
+- Monitoring dashboards
+### RDS Features
+**RDS Read Replica**: used for read scalability (ASYNC Replication)
+**RDS Multi AZ (Disaster Recovery)**: Data replication to other AZ and failover in case of AZ, loss of network, instance or storage failure
+**RDS - From Single-AZ to Multi-AZ**: zero downtime operation (no need ot stop DB, done by snapshot)
