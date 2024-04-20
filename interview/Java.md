@@ -214,6 +214,7 @@ Core interfaces:
 - **Stack** (works by hash indecies)
 - **Queue** (FIFO, insert and delete only from beginning and end)
     - LinkedList
+    - PriorityQueue<int[]> q = new PriorityQueue<>((a, b)->Integer.compare(b[1], a[1]));
 - **Dequeue** (Same as Queue, but instertion and deletion from both sides)
     - LinkedList
 - **Set** (unordered List without duplicates. Uses Map internally. LinkedHashset is ordered, Concurrenthash)

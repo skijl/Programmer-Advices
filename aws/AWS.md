@@ -191,12 +191,3 @@ The goal of ASG:
     * Dynamic Scaling (Scale when the CloudWatch is triggered)
     * Scheduled Scaling (Anticapate scaling using known patterns)
     * Predictive Scaling (Schedule using forecast)
-## RDS
-> RDS - Relational Database Service
-- Automated provisioning / Auto Scaling / Maximum Storage Treshhold
-- Backups
-- Monitoring dashboards
-### RDS Features
-**RDS Read Replica**: used for read scalability (ASYNC Replication)
-**RDS Multi AZ (Disaster Recovery)**: Data replication to other AZ and failover in case of AZ, loss of network, instance or storage failure
-**RDS - From Single-AZ to Multi-AZ**: zero downtime operation (no need ot stop DB, done by snapshot)
