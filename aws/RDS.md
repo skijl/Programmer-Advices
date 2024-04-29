@@ -21,3 +21,29 @@
 - **Writer Endpoint** always points to the master BD and if needed redirects
 - **Reader Endpoint** connects to all the read replicas with load balancing (at the connection level)
 * You can define custom endpoint for Read Replicas *(Divide Read Endpoint)*. After this you lose access to the Reader Endpoint
+## RDS & Aurora Security
+- **At-rest encryption:**
+    - Databse master & replicas encryption using AWS KMS - must be defined as launch time
+    - If the master is not encrypeted, the read replicas cannot be encrypted
+    - To encrypt an un-encrypted database, go through a DB snapshot & restore as encrypted
+- **In-flight encryption:** TLS-ready by default, use the AWS TLS toot certificated client-side
+- **IAM Authentication:** IAM roles to connect to your database (instead username/password)
+- **Security Groups:** Control Network access to your RDS/Aurora DB
+- **No SSH available** except on RDS Custom
+- **Audit Logs can be enabled** and sent to CloudWatch Logs for longer retention
+## Amazon RDS Proxy
+> Improves efficiency by reducing the stress on database resources
+- Serverless, autoscaling, highly available (multi-AZ)
+- **Reduces RDS and Aurora failover time by 66%**
+- **Enforce IAM Authentication for DB, and securely store credentials in AWS Secret Manager**
+- **RDS Proxy is never publicly accessible (must be accessed from VPC)**
+# Amazon ElasticCache
+- ElasticCache is to get managed Redis or Memchached
+- Chaches are in-memory databases with really high performance, low latency
+- Helps reduct load off of databses for read intencive workloads
+- ElasticCache supports **IAM Authentication for Redis** and/or you can set password/token when you create a Redis cluster - extra level of security for your cache
+- ElasticCache supports SASL-based authentication fro Memcachesd
+### Pattern s for ElasticCache
+- **Lazy loading:** all the read data is cached, data can become stale in cache
+- **Write Through:** adds or update sate in the cache when written to a DB (no stale data)
+- **Session Store:** store temporary session date in a cache (using TTL features)

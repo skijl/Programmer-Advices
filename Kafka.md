@@ -77,19 +77,21 @@ services:
 ## Properties (Confuent)
 spring:
   kafka:
-    bootstrap-servers: ${KAFKA_URI:your_kafka_bootstrap_servers}
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_URI:your_kafka_bootstrap_servers}
     properties:
       security.protocol: SASL_SSL
       sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username='${CLUSTER_API_KEY}' password='${CLUSTER_API_SECRET}';
       sasl.mechanism: PLAIN
       session:
         timeout.ms: 45000
-      spring.json.type.mapping: notification:com.onlineshop.orderservice.kafka.producer.NotificationProducer, order-status:com.onlineshop.orderservice.kafka.consumer.OrderStatusConsumer
-      group-id: order-service
+      spring.json.type.mapping: notification:com.onlineshop.orderservice.kafka.producer.NotificationProducer, order-status:com.onlineshop.orderservice.kafka.consumer.OrderStatusConsumer, payment-order:com.onlineshop.orderservice.kafka.consumer.UpdateOrderPaymentConsumer
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
     consumer:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-      group-id: notification-service
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      properties:
+        spring:
+          deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
+      group-id: order-service

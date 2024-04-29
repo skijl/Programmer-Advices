@@ -67,7 +67,6 @@ System.gc() - static mehtod of system class to forcefully run the garbage collec
 - **Prevent instantiation:** prevent other classes to create new instance of a class
 - **Singleton pattern:** class enshures that only one instance is created
 - **Factory methods:** control how objects are created, validation
-- **** 
 ### Types of Classes
 - Class A {} - concrete class (can be inherited, Object)
 - abstract Class B {} - incomplete class (can be inherited, no Object)
