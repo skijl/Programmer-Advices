@@ -1,21 +1,4 @@
 # Spring Framework
-## SOLID
-- **S** - Single Responsibility (one class or method must has only one responsibility)
-- **O** - Open Closed (Add the modification to the class by adding extension)
-- **L** - Liskov Substitution (Parent and Child class have to be substitutable and interchangable)
-- **I** - Interface Segregation (Create interface only with methods that are required)
-- **D** - Dependency Inversion (Higher level module should not have a dependency on the lower level module)
-### Singleton
-Create the object only once and use it across all the application
-Use private Constructor that we can't create object from the class, and static method to retriev the same object
-### Buider Design Pattern
-Use different contstructors to create different objects (@Builder in Lombok)
-### Prototype Design Pattern
-Create new object by extending the base object (Base class implements Clonable)
-<<<<<<< HEAD
-=======
-###
->>>>>>> 4a05a6e4250dcff0696688e43a379d15b16bc8b0
 ## JDBC - Java Database Connectivity
 > JDBC is an interface that defines how the client have may connect to database and helps avoid common errors
 - Connectivity with database
@@ -59,3 +42,4 @@ Normal forms:
 ## Team work
 - Scrum: a better way of team collaboration for solving complex problems (Product Owner, Scrum master and developers)
 - Agile: a project management approach that involves breaking the project into phases and and small pieces with high quality.
+

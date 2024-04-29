@@ -1,5 +1,5 @@
 # Design Patterns
-- **S** - Single Responsibility (one class or method must has only one responsibility)
+- **S** - Single Responsibility (one class or method must have only one responsibility)
 - **O** - Open Closed (Classes/functions are open for extension but closed for modification)
 - **L** - Liskov Substitution (Objects of a superclass should be replaceable with objects of its subclasses without affecting the correctness of the program)
 - **I** - Interface Segregation (Create interface only with methods that are required)
