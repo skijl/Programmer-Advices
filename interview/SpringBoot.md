@@ -12,6 +12,10 @@ Use private Constructor that we can't create object from the class, and static m
 Use different contstructors to create different objects (@Builder in Lombok)
 ### Prototype Design Pattern
 Create new object by extending the base object (Base class implements Clonable)
+<<<<<<< HEAD
+=======
+###
+>>>>>>> 4a05a6e4250dcff0696688e43a379d15b16bc8b0
 ## JDBC - Java Database Connectivity
 > JDBC is an interface that defines how the client have may connect to database and helps avoid common errors
 - Connectivity with database
