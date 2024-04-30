@@ -99,13 +99,17 @@ Bridge Pattern allows to create a bridge between the abstraction and its impleme
     - Data replication, events, methods
     - Replication delay
     - Extra complexity
+* **2 Phase Commit**
+    - Voting Phase (Phase 1): The transaction coordinator sends a prepare message to all participating nodes, asking them if they are ready to commit the transaction.
+    - Decision Phase (Phase 2): If all participating nodes respond with a "yes" vote during the voting phase, the coordinator sends a commit message to all nodes. If any participating node responds with a "no" vote during the voting phase or the coordinator detects a failure, it sends an abort message to all nodes.
 * **SAGA**
-    - Breaking down a complex transaction into a series of smaller, self-contained steps called "saga steps."
-* **Event Sourcing**
+    - Breaking down a complex transaction into a series of smaller, self-contained steps called "saga steps.". 
+    - Each step has to be a part of the main Transaction, which has to be ACID. Rollback if one of the operations fails
 ### Data Consitency
 - **Eventual Consistency** guarantees low latency with some stale data
 - **Strong consistency** guarantees updated/latest data with some higher latency
 ## Communitation Among Services
+> Data exchange formats: XML(Extensible Mark-up Language) and JSON (JavaSctript Object Notation)
 - **Synchronous**
 - **Asynchronous - even/messaging based**
 - **Communication Medium**
