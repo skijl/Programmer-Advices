@@ -1,7 +1,8 @@
 # CircuitBreaker
 - 3 States: CLOSED, OPEN, HALF_OPEN
 - You specify treshhold and after its exeeding state is OPEN and access to the server closes and you can specify handling for such a situation
-## Properties
+## application.yml
+```
 resilience4j:
   circuitbreaker:
     instances:
@@ -17,14 +18,16 @@ resilience4j:
         allow-health-indicator-to-fail: true
         automatic-transition-from-open-to-half-open-enabled: true
         sliding-window-type: count_based
-# Retry
+```
+## Retry
 - Retry some amount of times if the response is negative 
-# Rate Limiting
+## Rate Limiter
 - Technique for limiting network traffic
 - Prevent abuse
 - Resourse allocation
 - Cost management
-## Properties
+### application.yml
+```
 resilience4j:
   ratelimiter:
     configs:
@@ -33,13 +36,16 @@ resilience4j:
         limit-refresh-period:
         seconds: 5
         limit-for-period: 1
+```
 ## pom.xml
-        <dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
-			<version>3.1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-aop</artifactId>
-		</dependency>
+```
+  <dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
+    <version>3.1.0</version>
+  </dependency>
+  <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-aop</artifactId>
+  </dependency>
+```

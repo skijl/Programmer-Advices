@@ -2,21 +2,25 @@
 https://youtu.be/kakuRkFhW3M?si=KySootcnQB9fVuWY
 - Charge users
 - Create subscriptions  
-## pom.xml
-    <dependency>
-        <groupId>com.stripe</groupId>
-        <artifactId>stripe-java</artifactId>
-        <version>25.1.0</version>
-    </dependency>
-## Configs
-#can be any
+## application.yml
+```
+# can be any / no configs really needed, but it's a good practice to store such a data safe
 api:
   stripe:
     publisher-key: ${STRIPE_PUBLISHER_API_KEY:your_stripe_publisher_api_key}
     secret-key: ${STRIPE_SECRET_API_KEY:your_stripe_secret_api_key}
-# How to use?
-## Generate token
-### DTO Request to generate token:
+```
+## pom.xml
+```
+<dependency>
+    <groupId>com.stripe</groupId>
+    <artifactId>stripe-java</artifactId>
+    <version>25.1.0</version>
+</dependency>
+```
+## How to use?
+### 1. Generate token:
+```
 @Data
 public class StripeTokenDtoRequest {
     @NotBlank(message = "Card number is required")
@@ -38,7 +42,7 @@ public class StripeTokenDtoRequest {
     @NotBlank(message = "Username is required")
     private String username;
 }
-### Model to generate token:
+
 @Data
 public class StripeTokenModel {
     private String cardNumber;
@@ -49,7 +53,7 @@ public class StripeTokenModel {
     private String username;
     private Boolean success;
 }
-### Generate token service:
+
 @Service
 @Slf4j
 public class StripeTokenServiceImpl implements StripeTokenService {
@@ -80,8 +84,9 @@ public class StripeTokenServiceImpl implements StripeTokenService {
         }
     }
 }
-## Make charge
-### DTO Request for the charge:
+```
+### 2. Charge:
+```
 @Data
 public class StripeChargeDtoRequest {
     @NotBlank(message = "Username is required")
@@ -97,7 +102,7 @@ public class StripeChargeDtoRequest {
     private Map<String,Object> additionalInfo = new HashMap<>();
 
 }
-### Model for the charge
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -111,7 +116,7 @@ public class StripeChargeModel {
     private String chargeId;
     private Map<String,Object> additionalInfo = new HashMap<>();
 }
-### Service for the charge
+
 @Service
 @Slf4j
 public class StripeChargeServiceImpl implements StripeChargeService {
@@ -145,3 +150,4 @@ public class StripeChargeServiceImpl implements StripeChargeService {
         }
     }
 }
+```

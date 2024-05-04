@@ -1,31 +1,35 @@
 ## Description
 - Distributed tracing system needed to troubleshoot latency problems in service architectures.
 - Features include both the collection and lookup of this data.
-## Properties
-//default is on port 9411
-  zipkin:
-    tracing:
-      endpoint: 
+## application.yml
+```
+zipkin:
+  tracing:
+    endpoint: localhost:9411
+```
 ## pom.xml
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.micrometer</groupId>
-            <artifactId>micrometer-tracing-bridge-brave</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.zipkin.reporter2</groupId>
-            <artifactId>zipkin-reporter-brave</artifactId>
-        </dependency>
-        <!-- if openfeign is present -->
-        <dependency>
-            <groupId>io.github.openfeign</groupId>
-            <artifactId>feign-micrometer</artifactId>
-            <version>13.2.1</version>
-        </dependency>
-## Docker compose
+```
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+<dependency>
+    <groupId>io.micrometer</groupId>
+    <artifactId>micrometer-tracing-bridge-brave</artifactId>
+</dependency>
+<dependency>
+    <groupId>io.zipkin.reporter2</groupId>
+    <artifactId>zipkin-reporter-brave</artifactId>
+</dependency>
+<!-- if openfeign is present -->
+<dependency>
+    <groupId>io.github.openfeign</groupId>
+    <artifactId>feign-micrometer</artifactId>
+    <version>13.2.1</version>
+</dependency>
+```
+## docker-compose.yml
+```
 services:
   storage:
     image: openzipkin/zipkin-mysql
@@ -62,3 +66,4 @@ services:
       - MYSQL_PASS=zipkin
     depends_on:
       - storage
+```
