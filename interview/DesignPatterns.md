@@ -7,14 +7,24 @@
 ### Singleton
 Create the object only once and use it across all the application
 Use private Constructor that we can't create object from the class, and static method to retriev the same object
+- ![alt text](../static/singleton-dp.png)
+### Factory Design Pattern
+Pattern that provides an interface for creating objects but allows subclasses to decide which class to instantiate
+- ![alt text](../static/factory-dp.png)
 ### Buider Design Pattern
 The key idea behind the Builder Pattern is to provide a flexible and readable way to construct objects with a large number of optional parameters or configurations (@Builder in Lombok)
 ### Prototype Design Pattern
 Create new object by extending the base object (Base class implements Clonable)
+- ![alt text](../static/prototype-dp.png)
 ### Adapter Design Pattern
 Adapter Design Pattern allows incompatible interfaces to work together. It acts as a bridge between two incompatible interfaces by converting the interface of one class into another interface that a client expects.
+- ![alt text](../static/adapter-dp.png)
 ### Bridge Design Pattern 
 Bridge Pattern allows to create a bridge between the abstraction and its implementation, allowing them to vary independently of each other. 
+- ![alt text](../static/bridge-dp.png)
+### Decorator Design Pattern
+Decorator Design Pattern allows behavior to be added to individual objects, either statically or dynamically, without affecting the behavior of other objects from the same class
+- ![alt text](../static/decorator-dp.png)
 # Monolith vs Microservices
 ### Monolith
 + Easy to scale by having multiple copies (scale horizontaly)

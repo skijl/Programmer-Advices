@@ -45,17 +45,25 @@
 ## Communitation Among Services
 > Data exchange formats: XML(Extensible Mark-up Language) and JSON (JavaSctript Object Notation)
 - **Synchronous**
-- **Asynchronous - even/messaging based**
-- **Communication Medium**
-    - **HTTP REST xml/json**
-    - **Graphql**
-    - **gRPC**
+- **Asynchronous - event/messaging based**
+- **Graphql** (Better REST)
+- **gRPC** (Remote Procedure Call)
 ## Integration Patterns
-- **API Gateway**
+- **API Gateway** (Single Entry Point)
+    - Aggregating data from multiple services
+    - Client is using single standart protocol
+    - Easy to change the location of the service (host, port)
+    - Centralized security / logging / load balacing / caching / IP whitelistes / circuitbreaker
 - **Aggregator Pattern**
-- **Client Side UI Composition Patterns**
+    - Collaborating the data returned by each service
+    - Calling all the services needed to make the response
+    - Transform the response as per clients need
 - **Chained Pattern**
+    - From the other service we call another one in a chain
 - **Branch Pattern**
+    - From the service we can many services to compose the response
+- **Client Side UI Composition Patterns**
+    - Division frontend into microfrontend that communicates with the separate microservices
 ## Deployment Patterns
 - Multiple Service Instances per Host
 - Service Instance per Host
