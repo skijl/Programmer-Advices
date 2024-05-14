@@ -81,3 +81,5 @@
 - External Configuration
 - Service Discovery Pattern
 - Circuit Breaker Pattern
+    - Defines how gracefully we handle the errors
+    - ![alt text](../static/circuitbreaker-mdp.png)
