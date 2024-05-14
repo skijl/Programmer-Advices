@@ -6,7 +6,7 @@
     - The BFF pattern can also provide an additional layer of security by exposing only the necessary backend functionality to the frontend.
 ## Decomposition Patterns
 - **By Bussiness Domain (How to divide a monolith?)**
-    - Decompose Monolith app into Microservices by business finctionality
+    - Decompose Monolith app into Microservices by business functionality
 - **By Subdomain (How to decide the size of microservices)**
     - God Classes *(shared among different services)*
     - Sub Domain *(bounded context, divided by Domain Driven Design)*
