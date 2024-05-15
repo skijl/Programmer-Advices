@@ -1,7 +1,22 @@
 # Kafka
-- Asyncronous communication between services
-- We don't need to wait for the responce while communicating between services.
-- Good for Post, Put, Patch, Delete operations
+> Publish-subscribe based durable messaging system, exchanging data between processes, applications and servers
+* Asyncronous communication between services
+* We don't need to wait for the responce while communicating between services.
+
+- **Producers** are applications that publish to Kafka topics
+- **Consumers** subscribe to one or more topics and consume messages from partitions
+- **Brokers** are individual servers within the Kafka cluser. They store and manage data, handle producer and consumer requests, and participate in the replication and distribution 
+- **Topics** are logical channels and or categies to which messages are published. Topics can be divided into partitions for scalability & parallelism
+- **Partitions** allow Kafka to distribute and parallelize the processing of messages of data.
+- **Offset** represents the position of a consumer within a partition. 
+- **Offset Manager** manages the order of the messages and ensures that consumers can properly resume processing from the last committed offset in case of failures or restarts
+- **Consumer Group** contain consumers. Each group processes a subset partitions, allowing for parallel processing and load distribution.
+- **Zookeeper** coordiantes and manages Kafka clusters, where the data is stored
+
+* Hierarchy of the Kafka: `Cluster -> Brokers -> Topics -> Partitions -> Offsets`
+* Brokers are replicated where one is the Leader and others are replicated followers for fault tolerance
+* Order is managed by kafka with the offset management
+
 ## pom.xml
 ```
   <dependency>
@@ -17,9 +32,9 @@
 1. Create listener with argument as evenObject to retreive:
 ```
 @KafkaListener(topics = "yourTopic", groupId = "yourGroupId")
-    public void handleNotification(NotificationEvent notificationEvent){
-        
-    }
+public void handleNotification(NotificationEvent notificationEvent){
+    
+}
 ```
 ## application.yml
 ```
