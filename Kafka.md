@@ -14,6 +14,7 @@
 - **Zookeeper** coordiantes and manages Kafka clusters, where the data is stored
 
 * Hierarchy of the Kafka: `Cluster -> Brokers -> Topics -> Partitions -> Offsets`
+* ![alt text](./static/kafka.png)
 * Brokers are replicated where one is the Leader and others are replicated followers for fault tolerance
 * Order is managed by kafka with the offset management
 
