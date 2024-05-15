@@ -38,7 +38,7 @@
 2) Run on JVM
 ### Terms
 - **IDE** - a software application that helps develop software code efficiently
-- **JDK** - Java Development Kit - write Java
+- **JDK** - Java Development Kit - contains everything you need to compile and run your java programs
 - **JRE** - Java Runtime Environment - run Java. JRE consists of runtime libraries + JVM
 - JDK consists of tools and JRE
 - JVM consists of:
