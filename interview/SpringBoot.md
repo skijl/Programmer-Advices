@@ -1,16 +1,18 @@
 # Spring Framework
+- **Serialization** is the process of converting an object into a stream of bytes to store it in a file or transmit it over a network. 
+- **Deserialization** is the reverse process, reconstructing the object from the serialized byte stream which is platform independent.
+- **Dependency Injection** or **Inversion of Control** is priciple where the control of object creation and lifecycle is transferred to the Spring container, rather than new objects being created by user.
 ## JDBC - Java Database Connectivity
 > JDBC is an interface that defines how the client have may connect to database and helps avoid common errors
 - Connectivity with database
 - Loads the driver
 - Execute the query
-**JDBC task** - to write and execute SQL queries from Java app
-Java application talks to Database through the JDBC (We use JDBC Driver as a middleware that converts JDBC calls to SQL calls)
-### 4 Types of JDBC Drivers
-1) Type-1 driver or JDBC-ODBC bridge driver uses ODBC driver to connect to the database. The JDBC-ODBC bridge driver converts JDBC method calls into the ODBC function calls. Type-1 driver is also called Universal driver because it can be used to connect to any of the databases.
-2) Type-2 Native-API driver, is a database driver implementation that uses the client-side libraries of the database. The driver converts JDBC method calls into native calls of the database API. For example: Oracle OCI driver is a type 2 driver.
-3) Type-3 driver (Extension or Gateway)is a network-protocol, all-Java driver. This style of driver translates JDBC calls into the middleware vendor's protocol, which is then translated to a DBMS protocol by a middleware server.
-4) Type-4 - pure Java Driver. This driver interacts directly with the database. It does not require any native database library
+### JPA/Hibernate - Java Persistence API
+- **Lazy initialization** in Hibernate is a mechanism used to defer the loading of associated entities or collections until they are explicitly accessed, optimizing performance by fetching only the required data when needed, thereby reducing memory consumption and improving application efficiency.
+- **Cache levels:**
+    - **1st level** - session cache - stores objects within the current session (enabled by default, cannot be disabled)
+    - **2nd level** - session factory cache - caches objects across sessions (disnabled by default, can be enabled programaticaly)
+    - **Query cache** - stores results of queries to avoid repeated execution, improving performance by reducing database access and query execution time.
 ### Database Management System
 > Database Management System: orginized data / relationship / CRUD operations
 - Database: is a storage (collection of tables/schema/stored procedures)

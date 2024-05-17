@@ -2,26 +2,14 @@
 - **Default methods in an interface**
 - **Static methods in an interface**
 - **Function Interface**
-    * Instead of object you pass a function (single abstract method)
-    * Predicate is a functional interface with one abstract method 'test', that accepts 1 param, return true/false
+    * Interfaces that have exactly one abstract method, often representing a single function contract
+    * Used as refernce to the lambda expressions
     * Types on functional interface
         - Built-in
         - User defined
 - **Stream**
     * Stream - is a sequence of Bytes (8 bit binary data)
     * Functions in streams (filter, map, distinct, sort, toList)
-    * Byte Streams
-        - FileInputStream - reads from bin file.
-            - BufferedInputStream - remembers position and can move back
-            - ObjectInputStream - used to deserialize Java objects from an InputStream
-        - FileOutputStream - writes to bin file
-            - FileOutputStream
-            - BufferedOutputStream
-            - ByteArrayOutputStream
-            - ObjectOutputStream /Serialization/
-        - Char streams
-            - FileReader
-            - FileWriter
 - **Lambda function(expression)** - anonimous function that can execute some logic, you can pass it as a parameter
 - **Method refference**
 - **Optional**
@@ -33,6 +21,10 @@
 * Compiled then interpreted
 * Memory management (Garbage Collector)
 * Robust exception handling
+* Pointers are not used in Java because:
+    - It's unsafe
+    - Increases complexity of the program since Java known for its simplicity
+    - JVM is responsible for implicit and user doesn't have direct access to memory
 ### 2 Step Execution
 1) Source code compiled to bytecode
 2) Run on JVM
@@ -40,26 +32,25 @@
 - **IDE** - a software application that helps develop software code efficiently
 - **JDK** - Java Development Kit - contains everything you need to compile and run your java programs
 - **JRE** - Java Runtime Environment - run Java. JRE consists of runtime libraries + JVM
-- JDK consists of tools and JRE
-- JVM consists of:
+- **JVM** specification that provides runtime environment where bytecoe is executed. Consits of:
+    - Class area - variables, methods, classes
+    - Heap - created objects
+    - Stack - stores local variables and partial results (recursion uses the stack)
+    - PC Registers - contain instrucations executed in JVM
+    - Native method stack - contains native methods
+- **JRE execution model:**
 ```
-1) Class loaders:
-    I - Bootstrap - JVM starts and loads all classes from libraries
-    II - System - loads all user defines classes
-    III - External - all classes written outside
-2) Runtime memory:
-    a) Heap
-    b) Stack
-    c) Class method area
-    d) Native library
-    e) Program counter registe (thread)
-3) Garbage collector
-4) JiT - Just in Time compiler
+1) Javac.exe - Java compiler that converts Java code into bytecode which goes to JVM
+2) Bytecode is os independent and using JiT and Interpreter is converted into machine code
+3) JiT - Just in Time compiler - responsible for performance optimization of Java application at the runtime (used for converting bytecode into machine code)
 ```
-finalize() - method called after garbage collection
-System.gc() - static mehtod of system class to forcefully run the garbage collector
+![alt text](../static/compilation-flow.png)
+- **Exception propagation** - process by which exceptions are passed from a method that throws them to the method that called it, continuing up the call stack until they are handled or the program terminates.
+- **finalize()** - method called before garbage collection
+- **System.gc()** - static mehtod of system class to forcefully run the garbage collector that cleans Heap memory
 # OOP Features
 ### Classes and Objects
+> Java is not 100% OO language because of the primitive data types *(e.g. int, boolean, char...)*, but we can use wrapper classes to "wrap" the primitive classes into the object of that class
 - Class is a blueprint to create an object
     - Object - is an intance of a class 
     - Constructor - method that initializes the state and value during object creation.
@@ -79,9 +70,6 @@ Purpose of immutable objects:
 * static import: set of statements that is running when class is loaded. In this block we can write static members initialization code.
 > Object Class: supercalss for all hierarchy. Default superclass.   
 > Wrapper Class: represents a primitive data type as an object (int <=> Integer)
-> **When do we need it?:**
-- Clone() method
-- Serialization - a process of converting object into a binary stream to transfer to other place (DB, Socket). Implements Serializiable. Static method doesn't serialize. Transient = ingnored. 
 - Collections
 * Outboxing: make an object from primitive value
 * Unboxing: make a primitive from an object
@@ -97,6 +85,7 @@ Purpose of immutable objects:
 - Overloading: parameters change leaving the same name of the method
 - Overriding: change the body of function while inheriting
 * **You cannot override a constructor**
+* **You cannot overrinde private and static methods**
 ### Inheritance
 A feature that allows you:
 - to reuse the code
@@ -112,6 +101,7 @@ Types of inheritance:
 > Abstraction is a way to hide an implementation
 - Abstract class (you can't create objects from abstract classes. It can have implemented or abstract methods, doesn't support multiple inheritance)
 - Interface (We use it through child classes. Abstract methods have no bodies. Supports multiple inheritance)
+- Marker interface is an interface that does not contain any method declarations. Marker interfaces are often used to signal to the compiler or runtime environment that a class possesses certain characteristics or should be treated in a specific way. Examples of marker interfaces in Java include Serializable and Cloneable.
 - A skeleton, a blueprint without implementation
 - Can be used to describe featured of a system entity
 - May be used to represent abstraction
@@ -144,7 +134,7 @@ Types of exceptions:
 - Checked: thrown during the compilation (is not a programmer fault - file not found)
 - Unchecked: Runtime exception
 ## String
-> String is an **immutable** array of chars
+> String is **immutable** because of the security purpose and beacuse String pool requires strings to be immutable, otherwise shared reference can be changed from anywhere
 - Stored in a *constant pool* since it is immutable it is constant
 - For constantly changing strings use:
     - StringBuffer: threadsafe, low perform
@@ -181,7 +171,6 @@ Multithreading: all threads run on one process
     - Wait() - waiting for the lock of an object which runs by another thread
 6) Blocked State: 
     - When interrupt came and thread is blocked
-    - OR
     - We are waiting to execute an another thread
 7) Dead state:
     - Once it completes run()
@@ -207,36 +196,20 @@ Multithreading: all threads run on one process
 ## Collections
 > Collection is a way of grouping of objects in a single unit
 Core interfaces:
-- **Collection**
-- **List** (duplicates, null objects. Start capacity 10, if full almost doubles)
-    - ArrayList, LinkedList, Vector
-- **Stack** (works by hash indecies)
-- **Queue** (FIFO, insert and delete only from beginning and end)
-    - LinkedList
-    - PriorityQueue<int[]> q = new PriorityQueue<>((a, b)->Integer.compare(b[1], a[1]));
-- **Dequeue** (Same as Queue, but instertion and deletion from both sides)
-    - LinkedList
-- **Set** (unordered List without duplicates. Uses Map internally. LinkedHashset is ordered, Concurrenthash)
-    - HashSet, LinkedHashSet. ConcurrentHashSet is threadsafe or synchronized
-- **Map** (part of Collection but not inherit. Has an unorderedKey-Value pair, where Key is unique. HashMap - not synchronized, HashTable - synchronized)
-    - HashMap, ConcurrentHashmap, LinkedHashMap
-Legacy Collections (Synchronized or Threadsafe):
-1) Vector
-2) Stack
-3) Dictionary
-4) Hashtable
-5) Ennumeration
-### Features
+- ArrayList is for storing data, LinkedList is for manipulating the data
+- HashTable is synchronized and thread safe and HashMap is not, beacuse of that HashMap appears to be mush faster. HashTable cannot contain `null` keys
+- WeakHashMap is a class in Java that provides a hash table implementation with weak keys, meaning that keys that are no longer referenced elsewhere in the program may be automatically removed from the map is the Map is elegible for the garbage collector.
+### Iterator
 > Iterator - is an interface that allow the collection to be iterated from beginning till the end
 - Iterator has functoins:
     - hasNext() - true/false
     - next() - returns the next element from the next index
-How to get it?
-- Iterable is an interface returns an Iterator that we can do modifications through Iterator to Collections/
+- Iterable is an interface returns an Iterator that we can do modifications through Iterator to Collections
 - ListIterator has a function previous() we can traverse from the end to the beginning but only for List
-* Comparator is an interface. Every object in a treeSet must be comparable to Sort them. Class must implement Comparable Interface.
-* CompareTo() is an abstract method generic type
-* Map similar to Set. To iterate we have to convert it to Set. 3 ways:
 1) KeySet - `for (String key : map.keySet())`
 2) ValueSet - `for (Integer value : map.values())`
 3) EntrySet - `for (Map.Entry<String, Integer> entry : map.entrySet())`
+### Compare Objects
+- Class must implement Comparable Interface.
+- If you want to create custom comparator for your object, than object must `implements Comparable<YourObject>` and @Override method `public int compareTo(YourObject o){}`
+- Class that `implements Comparator<YourObject>` has to @Override the function `int compare(YourObject a, YourObject b){}` or you can use lambda in sorting function
