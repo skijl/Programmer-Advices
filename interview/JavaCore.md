@@ -25,9 +25,6 @@
     - It's unsafe
     - Increases complexity of the program since Java known for its simplicity
     - JVM is responsible for implicit and user doesn't have direct access to memory
-### 2 Step Execution
-1) Source code compiled to bytecode
-2) Run on JVM
 ### Terms
 - **IDE** - a software application that helps develop software code efficiently
 - **JDK** - Java Development Kit - contains everything you need to compile and run your java programs
@@ -36,7 +33,7 @@
     - Class area - variables, methods, classes
     - Heap - created objects
     - Stack - stores local variables and partial results (recursion uses the stack)
-    - PC Registers - contain instrucations executed in JVM
+    - PC Registers - contain instructions executed in JVM
     - Native method stack - contains native methods
 - **JRE execution model:**
 ```
