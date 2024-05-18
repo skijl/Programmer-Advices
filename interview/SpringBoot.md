@@ -1,7 +1,12 @@
 # Spring Framework
 - **Serialization** is the process of converting an object into a stream of bytes to store it in a file or transmit it over a network. 
+- **Transient** keyword is used to indicate that a field should not be serialized
 - **Deserialization** is the reverse process, reconstructing the object from the serialized byte stream which is platform independent.
+- **Externalization** provides more control over the serialization process.
 - **Dependency Injection** or **Inversion of Control** is priciple where the control of object creation and lifecycle is transferred to the Spring container, rather than new objects being created by user.
+## REST (Representational State Transfer)
+- **REST** is an architectural style for designing networked applications, relying on stateless, client-server communication via standard HTTP methods
+- In a **RESTful** system, resources are represented in a consistent format (often JSON or XML), and interactions are stateless, meaning each request from a client to the server must contain all the information needed to understand and process the request.
 ## JDBC - Java Database Connectivity
 > JDBC is an interface that defines how the client have may connect to database and helps avoid common errors
 - Connectivity with database

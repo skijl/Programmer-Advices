@@ -43,6 +43,7 @@
 ```
 ![alt text](../static/compilation-flow.png)
 - **Exception propagation** - process by which exceptions are passed from a method that throws them to the method that called it, continuing up the call stack until they are handled or the program terminates.
+- **Java Reflection API** allows runtime inspection and manipulation of classes, methods, and fields in the Java Virtual Machine, enabling accessing private fields, invoking methods, and creating instances. (is not thread safe)
 - **finalize()** - method called before garbage collection
 - **System.gc()** - static mehtod of system class to forcefully run the garbage collector that cleans Heap memory
 # OOP Features
@@ -194,8 +195,10 @@ Multithreading: all threads run on one process
 > Collection is a way of grouping of objects in a single unit
 Core interfaces:
 - ArrayList is for storing data, LinkedList is for manipulating the data
-- HashTable is synchronized and thread safe and HashMap is not, beacuse of that HashMap appears to be mush faster. HashTable cannot contain `null` keys
+- Concurrent HashMap (The undelined datastructure is HashTable introduced in JDK 1.5) is synchronized and thread safe and HashMap is not, beacuse of that HashMap appears to be mush faster. HashTable cannot contain `null` keys
 - WeakHashMap is a class in Java that provides a hash table implementation with weak keys, meaning that keys that are no longer referenced elsewhere in the program may be automatically removed from the map is the Map is elegible for the garbage collector.
+- Collections.unmodifiableList(YourList) is method that makes list Read Only
+- ![alt text](../static/collection-hierarchy.png)
 ### Iterator
 > Iterator - is an interface that allow the collection to be iterated from beginning till the end
 - Iterator has functoins:
