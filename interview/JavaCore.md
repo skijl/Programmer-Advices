@@ -4,6 +4,7 @@
 - **Function Interface**
     * Interfaces that have exactly one abstract method, often representing a single function contract
     * Used as refernce to the lambda expressions
+    * To create use @FunctionalInterface with one abstract method
     * Types on functional interface
         - Built-in
         - User defined
@@ -13,6 +14,7 @@
 - **Lambda function(expression)** - anonimous function that can execute some logic, you can pass it as a parameter
 - **Method refference**
 - **Optional**
+    * A container object that may or may not contain a non-null value, used primarily to avoid null checks and NullPointerExceptions.
 ## Features of Java
 * Platform independent (we compile anywhere to bytecode and run anywhere on JVM)
 * Strongly typed
@@ -198,6 +200,8 @@ Core interfaces:
 - Concurrent HashMap (The undelined datastructure is HashTable introduced in JDK 1.5) is synchronized and thread safe and HashMap is not, beacuse of that HashMap appears to be mush faster. HashTable cannot contain `null` keys
 - WeakHashMap is a class in Java that provides a hash table implementation with weak keys, meaning that keys that are no longer referenced elsewhere in the program may be automatically removed from the map is the Map is elegible for the garbage collector.
 - Collections.unmodifiableList(YourList) is method that makes list Read Only
+- Create Map from List: `.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));`
+- Get frequency of the element in the Collection: `Collection.frequency(list, elementName);`
 - ![alt text](../static/collection-hierarchy.png)
 ### Iterator
 > Iterator - is an interface that allow the collection to be iterated from beginning till the end

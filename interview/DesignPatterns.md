@@ -25,6 +25,8 @@ Bridge Pattern allows to create a bridge between the abstraction and its impleme
 ### Decorator Design Pattern
 Decorator Design Pattern allows behavior to be added to individual objects, either statically or dynamically, without affecting the behavior of other objects from the same class
 - ![alt text](../static/decorator-dp.png)
+### Service Registry/Discovery Design Pattern
+- The service registry and discovery pattern is a design pattern commonly used in microservices architectures to enable services to dynamically discover each other without hard-coded addresses. 
 # Monolith vs Microservices
 ### Monolith
 + Easy to scale by having multiple copies (scale horizontaly)
