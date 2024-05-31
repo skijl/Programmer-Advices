@@ -1,5 +1,6 @@
 # Java 8 Features
 - **Default methods in an interface**
+    * Methods defined in the interface itself, allowing classes that implement the interface to inherit and use the method without providing an implementation.
 - **Static methods in an interface**
 - **Function Interface**
     * Interfaces that have exactly one abstract method, often representing a single function contract
@@ -217,3 +218,9 @@ Core interfaces:
 - Class must implement Comparable Interface.
 - If you want to create custom comparator for your object, than object must `implements Comparable<YourObject>` and @Override method `public int compareTo(YourObject o){}`
 - Class that `implements Comparator<YourObject>` has to @Override the function `int compare(YourObject a, YourObject b){}` or you can use lambda in sorting function
+### Asyncronous Java
+- **CompletableFuture** is a class in Java that represents a future result of an asynchronous computation. 
+    - It is part of the java.util.concurrent from Java 8. It allows writing non-blocking code that performs better and scales more efficiently.
+    - You can chain multiple computations together and compose complex asynchronous workflows.
+    - Provides robust mechanisms for handling exceptions in asynchronous code.
+    - Supports callbacks that get triggered when the asynchronous computation completes.

@@ -69,6 +69,10 @@ Normal forms:
 3. If 2 and no dependecies between non-key atributes. 
 4. Only one primary key for one table. 
 5. If 4 and removing all the reduntancy
+## Tests
+- **Spy** used for partial mocking. Calls real methods by default but allows stubbing and verification.
+- **Stub** used to provide controlled responses to method calls. It doesn't verify method calls.
+- **Mock** used to verify interactions. By default, all methods return default values unless stubbed.
 ## Team work
 - Scrum: a better way of team collaboration for solving complex problems (Product Owner, Scrum master and developers)
 - Agile: a project management approach that involves breaking the project into phases and and small pieces with high quality.

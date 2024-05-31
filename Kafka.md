@@ -18,6 +18,7 @@
 * Brokers are replicated where one is the Leader and others are replicated followers for fault tolerance
 * Order is managed by kafka with the offset management
 
+- In Kafka header use `__TypeId__` for correct deserialization
 ## pom.xml
 ```
   <dependency>
