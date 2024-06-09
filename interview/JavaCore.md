@@ -6,14 +6,12 @@
     * Interfaces that have exactly one abstract method, often representing a single function contract
     * Used as refernce to the lambda expressions
     * To create use @FunctionalInterface with one abstract method
-    * Types on functional interface
-        - Built-in
-        - User defined
+    * Predicate is a functional interface with method that returns boolean
 - **Stream**
     * Stream - is a sequence of Bytes (8 bit binary data)
     * Functions in streams (filter, map, distinct, sort, toList)
 - **Lambda function(expression)** - anonimous function that can execute some logic, you can pass it as a parameter
-- **Method refference**
+- **Method reference**
 - **Optional**
     * A container object that may or may not contain a non-null value, used primarily to avoid null checks and NullPointerExceptions.
 ## Features of Java
