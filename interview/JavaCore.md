@@ -6,9 +6,13 @@
     * Interfaces that have exactly one abstract method, often representing a single function contract
     * Used as refernce to the lambda expressions
     * To create use @FunctionalInterface with one abstract method
-    * Predicate is a functional interface with method that returns boolean
-- **Stream**
-    * Stream - is a sequence of Bytes (8 bit binary data)
+    * Types of functional interfaces:
+        * **Predicate** returns boolean (joined by and(), or(), negate())
+        * **Function** takes some object and returns some object (chaining by andThen() and compose())
+        * **Consumer** method that takes some object and never returns any value (joined by andThen())
+        * **Supplier** is a functional interface with method does not take any object and returns some object (no chaining)
+        * **BiPredicate** & BiFunction take 2 paramaters
+- **Stream** - a way to operate on Collections in Java 8
     * Functions in streams (filter, map, distinct, sort, toList)
 - **Lambda function(expression)** - anonimous function that can execute some logic, you can pass it as a parameter
 - **Method reference**
