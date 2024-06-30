@@ -11,7 +11,7 @@
         * **Function** takes some object and returns some object (chaining by andThen() and compose())
         * **Consumer** method that takes some object and never returns any value (joined by andThen())
         * **Supplier** is a functional interface with method does not take any object and returns some object (no chaining)
-        * **BiPredicate** & BiFunction take 2 paramaters
+        * **BiPredicate & BiFunction** take 2 paramaters
 - **Stream** - a way to operate on Collections in Java 8
     * Functions in streams (filter, map, distinct, sort, toList)
 - **Lambda function(expression)** - anonimous function that can execute some logic, you can pass it as a parameter
@@ -178,7 +178,7 @@ Multithreading: all threads run on one process
 7) Dead state:
     - Once it completes run()
 ### Threads Pools
-* Prefered Pool of available working threads can be assigned to a task when comes from event. Working thread are reusable.
+* Prefered Pool of available working threads can be assigned to a task when comes from event. Working threads are reusable.
 * Types of Thread Pools:
 1) Fixed Thread Pool
 2) Cached-Dynamic
@@ -226,3 +226,4 @@ Core interfaces:
     - You can chain multiple computations together and compose complex asynchronous workflows.
     - Provides robust mechanisms for handling exceptions in asynchronous code.
     - Supports callbacks that get triggered when the asynchronous computation completes.
+    - CompletableFuture compared to Future supports non-blocking operations, chaining, and combining multiple asynchronous tasks along with built-in exception handling.

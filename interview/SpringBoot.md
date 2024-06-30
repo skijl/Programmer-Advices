@@ -8,8 +8,8 @@ Spring Boot is a project built on top of Spring that simplifies the setup and de
 - **Transient** keyword is used to indicate that a field should not be serialized
 - **Deserialization** is the reverse process, reconstructing the object from the serialized byte stream which is platform independent.
 - **Externalization** provides more control over the serialization process.
-- **Dependency Injection** or **Inversion of Control** is priciple where the control of object creation and lifecycle is transferred to the Spring container, rather than new objects being created by user.
-- **Aspect-Oriented Programming (AOP)** is a programming paradigm that aims to increase modularity by allowing the separation of cross-cutting concerns *(logging, security, and transaction management)*. It does this by enabling the addition of behavior to existing code without modifying the code itself, typically through the use of aspects, advice, pointcuts, and join points.
+* **Dependency Injection** or **Inversion of Control** is priciple where the control of object creation and lifecycle is transferred to the Spring container, rather than new objects being created by user.
+* **Aspect-Oriented Programming (AOP)** is a programming paradigm that aims to increase modularity by allowing the separation of cross-cutting concerns *(logging, security, and transaction management)*. It does this by enabling the addition of behavior to existing code without modifying the code itself, typically through the use of aspects, advice, pointcuts, and join points.
 ## Scopes
 In Spring Boot, the main bean scopes are:
 - **Singleton:** A single instance of the bean is created and shared across the entire Spring container.
